@@ -15,3 +15,10 @@ public class LoginModel
     [Required, UIHint("password")]
     public string Password { get; set; }
 }
+
+public class EmployeeWithPassword
+{
+    public Employee Employee { get; set; }
+    [UIHint("password"), Required]
+    public string Password { get; set; }
+}
