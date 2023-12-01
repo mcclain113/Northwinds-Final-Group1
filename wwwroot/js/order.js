@@ -5,13 +5,13 @@ $(function () {
       url: `../../api/order`,
       success: function (response, textStatus, jqXhr) {
         console.log(response);
-        $('#order_rows').html("");
+        $('#orders').html("");
         for (var i = 0; i < response.length; i++) {
-        var row = `<tr>
-        <td>${response[i].OrderId}</td>
-        </tr>`;
+          var item = `<li>
+          ${response[i].orderId}
+          </li>`;
           
-          $('#order_rows').append(row);
+          $('#orders').append(item);
         }
       },
       error: function (jqXHR, textStatus, errorThrown) {
