@@ -7,9 +7,12 @@ $(function () {
         console.log(response);
         $('#orders').html("");
         for (var i = 0; i < response.length; i++) {
-          var item = `<li>
-          ${response[i].orderId}
-          </li>`;
+        var item = `<li class="list-group-item">
+        <h3>${"Order ID: " + response[i].orderId} </h3>
+        <p>${"Required Date:  " + response[i].requiredDate} </p>
+        <p>${"Ordered Date:  " + response[i].orderDate}</p>
+        
+        </li>`;
           
           $('#orders').append(item);
         }
