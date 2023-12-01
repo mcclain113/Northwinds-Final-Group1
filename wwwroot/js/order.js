@@ -7,11 +7,20 @@ $(function () {
         console.log(response);
         $('#orders').html("");
         for (var i = 0; i < response.length; i++) {
-        var item = `<li class="list-group-item">
+          var requiredDate = new Date(response[i].requiredDate);
+          var orderedDate = new Date(response[i].orderDate);
+          let requiredDateNum = requiredDate.valueOf();
+          let start = Date.now();
+          let sevenDaysFromNow = start + 604800000;
+          var css = requiredDateNum < start 
+          ? " class='lateOrder'" 
+          : requiredDate > start && requiredDate < sevenDaysFromNow
+          ?" class='upcomingOrder'"
+          : "";
+          var item = `<li  class="list-group-item">
         <h3>${"Order ID: " + response[i].orderId} </h3>
-        <p>${"Required Date:  " + response[i].requiredDate} </p>
-        <p>${"Ordered Date:  " + response[i].orderDate}</p>
-        
+       <p ${css}>${"Required Date:  " + requiredDate.toDateString()}</p>
+       <p>${"Ordered Date:  " + orderedDate.toDateString()}</p>
         </li>`;
           
           $('#orders').append(item);

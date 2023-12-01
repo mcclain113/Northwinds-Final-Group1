@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Northwind.Controllers
 {
@@ -9,6 +10,20 @@ namespace Northwind.Controllers
         // this controller depends on the NorthwindRepository
         private DataContext _dataContext;
         public APIController(DataContext db) => _dataContext = db;
+
+        [HttpGet, Route("api/customer")]
+        // returns all customers
+        public IEnumerable<Customer> GetCustomer() => _dataContext.Customers;
+        [HttpGet, Route("api/customer/{id}")]
+        // returns specific customer
+        public Customer GetCustomer(int id) => _dataContext.Customers.FirstOrDefault(p => p.CustomerId == id);
+        
+        [HttpGet, Route("api/employee")]
+        // returns all employees
+        public IEnumerable<Employee> GetEmployee() => _dataContext.Employees;
+        [HttpGet, Route("api/employee/{id}")]
+        // returns specific employee
+        public Employee GetEmployee(int id) => _dataContext.Employees.FirstOrDefault(p => p.EmployeeId == id);
 
         [HttpGet, Route("api/product")]
         // returns all products
@@ -34,5 +49,7 @@ namespace Northwind.Controllers
         [HttpGet, Route("api/order/{id}")]
         // returns specific orders
         public Order GetOrder(int id) => _dataContext.Orders.FirstOrDefault(o => o.OrderId == id);
+
+
     }
 }

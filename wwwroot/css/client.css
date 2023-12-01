@@ -80,3 +80,13 @@ body {
 #product_rows tr {
   cursor: pointer;
 }
+
+.lateOrder {
+  color: red;
+  font-weight: bolder;
+}
+
+.upcomingOrder {
+  color: green;
+  font-weight: bolder;
+}
