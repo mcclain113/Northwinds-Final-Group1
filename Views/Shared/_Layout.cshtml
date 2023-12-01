@@ -69,6 +69,7 @@
                                     if (User.IsInRole("northwind-employee"))
                                     {
                                         <a class="dropdown-item" asp-controller="Employee" asp-action="Account"><i class="fas fa-user"></i> Account</a>
+                                        <a class="dropdown-item" asp-controller="Order" asp-action="OrderView"><i class="fas fa-tasks"></i> View Orders</a>
                                         <a class="dropdown-item" asp-controller="Account" asp-action="Logout"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
                                     } else {
                                         <a class="dropdown-item" asp-controller="Employee" asp-action="Register"><i class="far fa-address-card"></i> Register</a>

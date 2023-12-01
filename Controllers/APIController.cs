@@ -15,6 +15,13 @@ namespace Northwind.Controllers
         public IEnumerable<Product> Get() => _dataContext.Products.OrderBy(p => p.ProductName);
             [HttpGet, Route("api/product/{id}")]
         // returns specific product
+
+        [HttpGet, Route("api/order")]
+        // returns all orders
+        public IEnumerable<Order> GetOrder() => _dataContext.Orders.OrderBy(o => o.CustomerId);
+            [HttpGet, Route("api/order/{id}")]
+        // returns specific product
+
         public Product Get(int id) => _dataContext.Products.FirstOrDefault(p => p.ProductId == id);
                 [HttpGet, Route("api/product/discontinued/{discontinued}")]
         // returns all products where discontinued = true/false
