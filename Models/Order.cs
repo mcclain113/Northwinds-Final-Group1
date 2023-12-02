@@ -3,8 +3,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 public class Order
 {
     public int OrderId { get; set; }
-    public int CustomerId { get; set; }
+    [ForeignKey("Employee")]
     public int EmployeeId { get; set; }
+    public virtual Employee Employee { get; set; }
     public DateTime? OrderDate { get; set; }
     public DateTime? RequiredDate { get; set; }
     public DateTime? ShippedDate { get; set; }
@@ -17,6 +18,11 @@ public class Order
     public string ShipRegion { get; set; }
     public string ShipPostalCode { get; set; }
     public string ShipCountry { get; set; }
+    [ForeignKey("Customer")]
+    public int CustomerId { get; set; }
+    public virtual Customer Customer { get; set; }
+    // public ICollection<Customer> Customers { get; set; }
+    // public ICollection<Employee> Employees { get; set; }
 
 }
 

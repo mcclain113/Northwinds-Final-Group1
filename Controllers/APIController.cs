@@ -34,7 +34,10 @@ namespace Northwind.Controllers
         [HttpGet, Route("api/product/discontinued/{discontinued}")]
         // returns all products where discontinued = true/false
         public IEnumerable<Product> GetDiscontinued(bool discontinued) => _dataContext.Products.Where(p => p.Discontinued == discontinued).OrderBy(p => p.ProductName);
-                [HttpGet, Route("api/category/{CategoryId}/product")]
+        [HttpGet, Route("api/category")]
+        // returns all categories
+         public IEnumerable<Category> GetCategory() => _dataContext.Categories.Include("Products").OrderBy(c => c.CategoryName);
+        [HttpGet, Route("api/category/{CategoryId}/product")]
         // returns all products in a specific category
         public IEnumerable<Product> GetByCategory(int CategoryId) => _dataContext.Products.Where(p => p.CategoryId == CategoryId).OrderBy(p => p.ProductName);
                 [HttpGet, Route("api/category/{CategoryId}/product/discontinued/{discontinued}")]
@@ -45,7 +48,7 @@ namespace Northwind.Controllers
         public CartItem Post([FromBody] CartItemJSON cartItem) => _dataContext.AddToCart(cartItem);
         [HttpGet, Route("api/order")]
         // returns all orders
-        public IEnumerable<Order> GetOrder() => _dataContext.Orders.OrderBy(o => o.CustomerId);
+        public IEnumerable<Order> GetOrder() => _dataContext.Orders.Include("Customer").Include("Employee").OrderBy(o => o.OrderId);
         [HttpGet, Route("api/order/{id}")]
         // returns specific orders
         public Order GetOrder(int id) => _dataContext.Orders.FirstOrDefault(o => o.OrderId == id);

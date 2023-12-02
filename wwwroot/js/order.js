@@ -26,18 +26,10 @@ $(function () {
         <h3>${"Order ID: " + response[i].orderId} </h3>
        <p ${css}>${"Required Date:  " + requiredDate.toDateString()}</p>
        <p>${"Ordered Date:  " + orderedDate.toDateString()}</p>
+       <p>${"Company Name: " + response[i].customer.companyName} </p>
+       <p>${"Employee Name: " + response[i].employee.firstName + " " + response[i].employee.lastName} </p>
+
         </li>`;
-          
-        // var test = late;
-        // late === "" && nextFutrue === "" && allFutrue === ""
-        // ?  $('#orders').append(item) 
-        // : late === "late"
-        // ? $('#orders').append(item)
-        // : nextFutrue === "nextFuture"
-        // ? $('#orders').append(item)
-        // : allFutrue === "allFuture"
-        // ? $('#orders').append(item)
-        // : ""; 
 
         if (late === "" && nextFutrue === "" && allFutrue === "") {
           $('#orders').append(item);

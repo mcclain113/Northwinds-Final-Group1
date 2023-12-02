@@ -20,4 +20,5 @@ public class Employee
     public int? ReportsTo { get; set; }
     [Required]
     public string Email { get; set; }
+    public Order Order { get; set; }
 }
