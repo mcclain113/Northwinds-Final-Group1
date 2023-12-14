@@ -12,20 +12,26 @@ $(function () {
         for (var i = 0; i < response.length; i++) {
           var requiredDate = new Date(response[i].requiredDate);
           var orderedDate = new Date(response[i].orderDate);
+          var shippedDate = new Date(response[i].shippedDate);
+          var shippedDateAndNull = ""
+          if (response[i].shippedDate == null) {var shippedDateAndNull = "Completed";}
+          else {var shippedDateAndNull = shippedDate.toDateString();}
+
           let requiredDateNum = requiredDate.valueOf();
           let start = Date.now();
           let sevenDaysFromNow = start + 604800000;
-          var css = requiredDateNum < start 
+          var css = requiredDateNum < start && response[i].shippedDate == null
           ? " class='lateOrder'" 
-          : requiredDate > start && requiredDate < sevenDaysFromNow
+          : requiredDate > start && requiredDate < sevenDaysFromNow && response[i].shippedDate == null
           ?" class='upcomingOrder'"
-          : requiredDate > start
+          : requiredDate > start && response[i].shippedDate == null
           ?" class='allUpcomingOrder'"
           : "";
           var item = `<li  class="list-group-item">
         <h3>${"Order ID: " + response[i].orderId} </h3>
        <p ${css}>${"Required Date:  " + requiredDate.toDateString()}</p>
        <p>${"Ordered Date:  " + orderedDate.toDateString()}</p>
+       <p>${"Shipped/Completed Date:  " + shippedDateAndNull}</p>
        <p>${"Company Name: " + response[i].customer.companyName} </p>
        <p>${"Employee Name: " + response[i].employee.firstName + " " + response[i].employee.lastName} </p>
 
