@@ -14,7 +14,7 @@ $(function () {
           var orderedDate = new Date(response[i].orderDate);
           var shippedDate = new Date(response[i].shippedDate);
           var shippedDateAndNull = ""
-          if (response[i].shippedDate == null) {var shippedDateAndNull = "Completed";}
+          if (response[i].shippedDate == null) {var shippedDateAndNull = "";}
           else {var shippedDateAndNull = shippedDate.toDateString();}
 
           let requiredDateNum = requiredDate.valueOf();
